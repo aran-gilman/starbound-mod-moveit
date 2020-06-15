@@ -1,0 +1,11 @@
+{
+	"isBlockingInteractable": {
+		"type": "action",
+		"name": "isBlockingInteractable",
+		"title": "",
+		"properties": {},
+		"category": "moveit",
+		"script": "/mods/MoveIt/scripts/actions/moveit.lua",
+		"output": {}
+	}
+}

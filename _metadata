@@ -1,0 +1,7 @@
+{
+	"author" : "zoniventris",
+	"description" : "Makes NPCs try to avoid standing in front of most interactable objects.",
+	"friendlyName" : "Move It!",
+	"name" : "MoveIt",
+	"version" : "1"
+}

@@ -1,0 +1,99 @@
+{
+	"name": "moveit",
+	"description": "Moves the NPC so that they are no longer standing in front of an interactable object.",
+	"scripts": [
+		"/scripts/actions/moveit.lua",
+		"/scripts/actions/query.lua",
+		"/scripts/actions/world.lua",
+		"/scripts/actions/movement.lua",
+		"/scripts/actions/npc.lua",
+		"/scripts/actions/entity.lua"
+	],
+	"root": {
+		"title": "Move out of the way",
+		"type": "composite",
+		"name": "sequence",
+		"parameters": {},
+		"children": [
+			{
+				"title": "Find valid direction",
+				"type": "composite",
+				"name": "selector",
+				"parameters": {},
+				"children": [
+					{
+						"title": "Try a direction",
+						"type": "composite",
+						"name": "sequence",
+						"parameters": {},
+						"children": [
+							{
+								"title": "Pick a direction",
+								"type": "action",
+								"name": "setDirection",
+								"parameters": {},
+								"output": {
+									"direction": "direction"
+								}
+							},
+							{
+								"title": "Can continue in this direction",
+								"type": "action",
+								"name": "canMove",
+								"parameters": {
+									"direction": {
+										"key": "direction"
+									}
+								},
+								"output": {}
+							}
+						]
+					},
+					{
+						"title": "Try reverse direction",
+						"type": "composite",
+						"name": "sequence",
+						"parameters": {},
+						"children": [
+							{
+								"title": "Reverse direction",
+								"type": "action",
+								"name": "reverseDirection",
+								"parameters": {
+									"direction": {
+										"key": "direction"
+									}
+								},
+								"output": {
+									"direction": "direction"
+								}
+							},
+							{
+								"title": "Can move in new direction",
+								"type": "action",
+								"name": "canMove",
+								"parameters": {
+									"direction": {
+										"key": "direction"
+									}
+								},
+								"output": {}
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Move out of the way",
+				"type": "action",
+				"name": "move",
+				"parameters": {
+					"direction": {
+						"key": "direction"
+					}
+				},
+				"output": {}
+			}
+		]
+	}
+}

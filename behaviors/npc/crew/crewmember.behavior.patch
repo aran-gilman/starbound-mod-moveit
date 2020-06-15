@@ -1,0 +1,89 @@
+[
+	{
+		"op": "add",
+		"path": "/scripts/-",
+		"value": "/scripts/actions/moveit.lua"
+	},
+	{
+		"op": "add",
+		"path": "/root/children/-",
+		"value": {
+			"title": "Should move?",
+			"type": "composite",
+			"name": "sequence",
+			"parameters": {},
+			"children": [
+				{
+					"title": "Clear flag",
+					"type": "action",
+					"name": "unsetFlag",
+					"parameters": {
+						"name": {
+							"value": "blockingInteractable"
+						}
+					}
+				},
+				{
+					"title": "Is player nearby?",
+					"type": "action",
+					"name": "entityInRange",
+					"parameters": {
+						"entity": {
+							"key": "player"
+						},
+						"position": {
+							"key": "self"
+						},
+						"range": {
+							"value": 5
+						}
+					}
+				},
+				{
+					"title": "Is blocking interactable",
+					"type": "action",
+					"name": "isBlockingInteractable",
+					"parameters": {}
+				},
+				{
+					"title": "Set flag",
+					"type": "action",
+					"name": "setFlag",
+					"parameters": {
+						"name": {
+							"value": "blockingInteractable"
+						}
+					}
+				}
+			]
+		}
+	},
+	{
+		"op": "add",
+		"path": "/root/children/1/children/0",
+		"value": {
+			"title": "Move if blocking",
+			"type": "composite",
+			"name": "sequence",
+			"parameters": {},
+			"children": [
+				{
+					"title": "Is blocking",
+					"type": "action",
+					"name": "hasFlag",
+					"parameters": {
+						"name": {
+							"key": "blockingInteractable"
+						}
+					}
+				},
+				{
+					"title": "moveit",
+					"type": "module",
+					"name": "moveit",
+					"parameters": {}
+				}
+			]
+		}
+	}
+]
